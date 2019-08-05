@@ -163,39 +163,101 @@
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">InvMS</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <div class="wrapper">
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - InvMS - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>FLEET MS</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <p>FLEET MS</p>
+                <li class="active">
+                    @Html.ActionLink("Dashboard", "Index", new { Controller = "Home" }, new { @class = "nav-link" })
+                </li>
+
+                <li>
+                    <a href="#linkDriver" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Driver </a>
+                    <ul class="collapse list-unstyled" id="linkDriver">
+                        <li>
+                            @Html.ActionLink("Driver Entry", "Index", new { Controller = "DriverEntry" }, new { @class = "nav-link" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Driver List", "List", new { Controller = "DriverEntry" }, new { @class = "nav-link" })
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#linkVehicle" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Vehicle </a>
+                    <ul class="collapse list-unstyled" id="linkVehicle">
+                        <li>
+                            @Html.ActionLink("Vehicle Entry", "Index", new { Controller = "Vehicle" }, new { @class = "nav-link" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Vehicle List", "List", new { Controller = "Vehicle" }, new { @class = "nav-link" })
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#linkSettings" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Settings</a>
+                    <ul class="collapse list-unstyled" id="linkSettings">
+                        <li>
+                            @Html.ActionLink("New User", "Register", new { Controller = "Account" }, new { @class = "nav-link" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Change Password", "ChangePassword", new { Controller = "Manage" }, new { @class = "nav-link" })
+                        </li>
+
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content" style="width:100%;">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <div class="navbar-header">
+                        <button type="button" id="sidebarCollapse" class="navbar-btn">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+
+                                @Html.ActionLink("New User", "Register", new { Controller = "Account" }, new { @class = "nav-link" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Change Password", "ChangePassword", new { Controller = "Manage" }, new { @class = "nav-link" })
+                            </li>
+
+                            <li>
+                                <a href="@ViewBag.ListLink">@ViewBag.LinkName</a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </nav>
+
+            <partial name="_CookieConsentPartial" />
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
+
+    </div>
 
     <environment include="Development">
         @*<script src="~/lib/jquery/dist/jquery.js"></script>

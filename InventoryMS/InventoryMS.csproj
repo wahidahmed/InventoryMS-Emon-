@@ -14,10 +14,8 @@
 
 
   <ItemGroup>
-    <Folder Include="Areas\ProductArea\Controllers\" />
     <Folder Include="Areas\ProductArea\Data\" />
     <Folder Include="Areas\ProductArea\Models\" />
-    <Folder Include="Areas\ProductArea\Views\" />
   </ItemGroup>
 
 
