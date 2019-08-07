@@ -4,10 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InventoryMS.Areas.ProductArea.Controllers
+namespace InventoryMS.Areas.Master.Controllers
 {
-    [Area("ProductArea")]
-    public class ProductController : Controller
+    public class CatagoryController : Controller
     {
         public IActionResult Index()
         {
