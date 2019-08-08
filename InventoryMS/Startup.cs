@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InventoryMS.DAL;
+using InventoryMS.Services.Master;
+using InventoryMS.Services.Master.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +29,9 @@ namespace InventoryMS
         {
             #region Database Settings
             services.AddDbContextPool<AppDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
+            #endregion
+            #region Catagory services
+            services.AddScoped<ICatagoryService, CatagoryService>();
             #endregion
             services.Configure<CookiePolicyOptions>(options =>
             {

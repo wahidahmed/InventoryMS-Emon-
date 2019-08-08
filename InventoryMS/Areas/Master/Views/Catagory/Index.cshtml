@@ -1,9 +1,67 @@
-﻿
+﻿@model CatagoryViewModel
 @{
     ViewData["Title"] = "Catagory";
 }
 
-<form asp-area="Master" asp-controller="Catagroy" asp-action="Index">
 
-</form>
+<div class="card" style="width: 100%;">
+    <div class="card-body">
+        <h4 class="card-title" style="color: black">Catagory Entry</h4>
+        <hr>
+        <form asp-area="Master" asp-controller="Catagroy" asp-action="Index">
+            <input type="hidden" name="ID" id="ID" value="0">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label asp-for="CatagoryName" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="CatagoryName" id="CatagoryName" />
+                            <span asp-validation-for="CatagoryName"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Remarks" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="Remarks" id="Remarks" />
+                            <span asp-validation-for="Remarks"></span>
+
+                            <hr>
+                            <button type="submit" value="Submit" class="btn btn-success btn-lg" style="float:right; margin-top:5px;"><i class="fas fa-save"></i></button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="card-body">
+        <h4 class="card-title" style="color: black">Catagory List</h4>
+        <hr>
+        <table class="table table-bordered table-striped" id="tblList">
+            <thead>
+                <tr>
+                    <th>Catagory Name</th>
+                    <th>Remarks</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+<script>
+    $(document).ready(function () {
+        $("#tblList").DataTable();
+    })
+
+</script>
+
+}
+
 
