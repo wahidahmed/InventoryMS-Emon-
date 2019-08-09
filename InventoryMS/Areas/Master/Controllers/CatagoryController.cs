@@ -26,6 +26,8 @@ namespace InventoryMS.Areas.Master.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(CatagoryViewModel model)
         {
             if (!ModelState.IsValid)
@@ -40,7 +42,7 @@ namespace InventoryMS.Areas.Master.Controllers
                 Remarks=model.Remarks
             };
             await catagoryService.Save(entity);
-            return View();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -50,7 +50,18 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+                @{ 
+                    foreach(var data in Model.GetCatagories)
+                    {
+                        <tr>
+                            <td>@data.CatagoryName</td>
+                            <td>@data.Remarks</td>
+                            <td><a href="javascript:void(0)" onclick="Edit()" class="btn btn-success"><i class="fa fa-edit"></i></a><a href="javascript:void(0)" onclick="Delete()" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+                        </tr>
+                    }
+                }
+            </tbody>
         </table>
     </div>
 </div>

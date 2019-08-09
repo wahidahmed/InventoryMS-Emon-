@@ -30,8 +30,11 @@ namespace InventoryMS
             #region Database Settings
             services.AddDbContextPool<AppDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
             #endregion
-            #region Catagory services
+            #region Master services
             services.AddScoped<ICatagoryService, CatagoryService>();
+            services.AddScoped<ICountryService, CountryService>();
+            services.AddScoped<IDivisionService, DivisionService>();
+            services.AddScoped<IDistrictService, DistrictService>();
             #endregion
             services.Configure<CookiePolicyOptions>(options =>
             {
