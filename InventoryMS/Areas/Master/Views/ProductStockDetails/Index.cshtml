@@ -1,0 +1,160 @@
+﻿@model ProductStockDetailsViewModel
+@{
+    ViewData["Title"] = "Product Stock Details";
+}
+<style>
+    
+</style>
+<div class="card" style="width: 100%;">
+    <div class="card-body">
+        <h4 class="card-title" style="color: black"> Product Stock Details Entry</h4>
+        <hr>
+        <form asp-area="Master" asp-controller="ProductStockDetails" asp-action="Index">
+            <input type="hidden" name="ID" id="ID" value="0">
+            <div class="row">
+                <div asp-validation-summary="All" class="text-danger">
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label asp-for="ProductID" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="hidden" id="ProductID" name="ProductID" />
+                            <input type="text" class="form-control" value="" name="ProductName" id="ProductName" />
+
+                            <span asp-validation-for="ProductID"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3">Unit</label>
+                        <div class="col-md-7">
+                            <input readonly class="form-control" id="unit" />
+                        </div>
+                    </div>
+                  
+                    <div class="form-group row">
+                        <label class="col-md-3">Particulars</label>
+                        <div class="col-md-7">
+                            <input readonly class="form-control" id="Particulars" />
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <label asp-for="Qty" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="number" class="form-control" name="Qty" id="Qty" />
+                            <span asp-validation-for="Qty"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label asp-for="Cost" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="number" class="form-control" name="Cost" id="Cost" />
+                            <span asp-validation-for="Cost"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label asp-for="EntryDate" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control datePicker" name="EntryDate" id="EntryDate" />
+                            <span asp-validation-for="EntryDate"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label class="col-md-3">Catagory</label>
+                        <div class="col-md-7">
+                            <input readonly class="form-control" id="Catagory" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3">Brand</label>
+                        <div class="col-md-7">
+                            <input readonly class="form-control" id="Brand" />
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label asp-for="UnitPrice" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="number" class="form-control" name="UnitPrice" id="UnitPrice" />
+                            <span asp-validation-for="UnitPrice"></span>
+
+
+                            <button type="submit" value="Submit" class="btn btn-success btn-lg" style="float:right; margin-top:5px;"><i class="fas fa-save"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts{ 
+    <script>
+        $(document).ready(function () {
+            $(".datePicker").datepicker({ dateFormat: "dd/mm/yy", showAnim: "scale", changeMonth: true, changeYear: true, yearRange: "1990:2030" }).datepicker("setDate", new Date()); 
+
+            GetProducts();
+        })
+
+        function GetProducts() {
+        var allProduct = [];
+            $("#ProductName").attr("placeholder", "Loading .....");
+        $.ajax({
+            contentType: "application/json; charset=utf-8",
+            url: '@Url.Action("GetProducts")',
+            type: "GET",
+            dataType: "json",
+            async: true,
+            data: {},
+            success: function (List_ItemViewModel) {
+                console.log(List_ItemViewModel)
+                $.each(List_ItemViewModel, function (id, option) {
+                    var obj2 = new Object();
+                    obj2.key = option.id;
+                    obj2.value = option.productName;
+                    obj2.particurals = option.particurals;
+                    obj2.unit = option.unit;
+                    obj2.brand = option.brand;
+                    obj2.catagory = option.catagory;
+                    allProduct[allProduct.length] = obj2;
+                });
+                $("#ProductName").attr("placeholder", "Entry Product Name");
+            },
+            failure: function () {
+                $.alert.open("error", "Failed!");
+            }
+        });
+            $('#ProductName').autocomplete({
+                source: allProduct,
+                select: function (event, ui) {
+                    console.log(ui)
+                    $("#ProductID").val(ui.item.key);
+                    $("#ProductName").val(ui.item.ProductName);
+                    $("#Particulars").val(ui.item.particurals);
+                    $("#unit").val(ui.item.unit);
+                    $("#Brand").val(ui.item.brand);
+                    $("#Catagory").val(ui.item.catagory);
+            }
+
+        });
+      
+    }
+
+
+    </script>
+}

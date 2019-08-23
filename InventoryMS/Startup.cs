@@ -35,6 +35,11 @@ namespace InventoryMS
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IDivisionService, DivisionService>();
             services.AddScoped<IDistrictService, DistrictService>();
+            services.AddScoped<IThanaService, ThanaService>();
+            services.AddScoped<ISupplierService, SupplierService>();
+          
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductStockDetailsService, ProductStockDetailsService>();
             #endregion
             services.Configure<CookiePolicyOptions>(options =>
             {

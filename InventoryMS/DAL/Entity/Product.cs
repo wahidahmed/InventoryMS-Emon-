@@ -5,12 +5,19 @@ using System.Threading.Tasks;
 
 namespace InventoryMS.DAL.Entity
 {
-    public class Product : Base
+    public class Product:Base
     {
-        public int? BrandsID { get; set; }
+        public string ProductCode { get; set; }
         public string ProductName { get; set; }
-        public string ShortName { get; set; }
-        public string Remarks { get; set; }
-        public Brand Brands { get; set; }
+        public string Brand { get; set; }
+        public string Catagory { get; set; }
+        public string Particurals { get; set; }
+        
+        public string Unit { get; set; }
+        public string Image { get; set; }
+       
+        public int? SupplierID { get; set; }
+
+        
     }
 }

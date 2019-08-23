@@ -1,0 +1,134 @@
+﻿@model ProductViewModel
+@{
+    ViewData["Title"] = "Stock Product Entry";
+}
+
+<div class="card" style="width: 100%;">
+    <div class="card-body">
+        <h4 class="card-title" style="color: black">New Product Entry</h4>
+        <hr>
+        <form asp-area="Master" asp-controller="Product" asp-action="Index">
+            <input type="hidden" name="ID" id="ID" value="0">
+            <div class="row">
+                <div asp-validation-summary="All" class="text-danger">
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label asp-for="ProductName" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="ProductName" id="ProductName" />
+                            <span asp-validation-for="ProductName"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label asp-for="Catagory" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="Catagory" id="Catagory" />
+                            <span asp-validation-for="Catagory"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Unit" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="Unit" id="Unit" />
+                            <span asp-validation-for="Unit"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Image" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="Image" id="Image" />
+                            <span asp-validation-for="Image"></span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label asp-for="Brand" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="Brand" id="Brand" />
+                            <span asp-validation-for="Brand"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Particurals" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="Particurals" id="Particurals" />
+                            <span asp-validation-for="Particurals"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="SupplierID" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <select class="form-control" name="SupplierID" id="SupplierID">
+                                <option value="">Select</option>
+                                @{
+                                    foreach (var data in Model.GetSuppliers)
+                                    {
+                                        <option value="@data.ID">@data.Name</option>
+                                    }
+
+                                }
+                            </select>
+
+                            <span asp-validation-for="SupplierID"></span>
+
+                            <button type="submit" value="Submit" class="btn btn-success btn-lg" style="float:right; margin-top:5px;"><i class="fas fa-save"></i></button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title" style="color: black">New Product List</h4>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-bordered" id="tblList">
+                    <thead>
+                        <tr>
+                            <th>Product Code</th>
+                            <th>Product Name</th>
+                            <th>Catagory</th>
+                            <th>Brand</th>
+                            <th>Particulars</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var data in Model.GetProducts)
+                        {
+                            <tr>
+                                <td>@data.ProductCode</td>
+                                <td>@data.ProductName</td>
+                                <td>@data.Catagory</td>
+                                <td>@data.Brand</td>
+                                <td>@data.Particurals</td>
+                                <td><a href="javascript:void(0)" class="btn btn-info btnMrginTbl"><i class="fa fa-edit"></i></a><a href="javascript:void(0)" class="btn btn-danger btnMrginTbl"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#tblList").DataTable();
+        })
+    </script>
+   
+    }

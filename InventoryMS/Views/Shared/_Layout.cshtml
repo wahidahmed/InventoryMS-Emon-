@@ -12,7 +12,7 @@
 
         <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" />
 
-
+        <link href="~/themes/base/jquery-ui.css" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
@@ -160,6 +160,7 @@
             background-color: #1cc88a;
             border-color: #1cc88a;
         }
+        .btnMrginTbl{margin:1%}
     </style>
 </head>
 <body>
@@ -168,55 +169,33 @@
         <!-- Sidebar -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>INVENTORY</h3>
+                <h3>Inventory</h3>
             </div>
 
             <ul class="list-unstyled components">
-                <p>INVENTORY</p>
+                <p>Inventory</p>
                 <li class="active">
-                    @Html.ActionLink("Dashboard", "Index", new { Controller = "Home" }, new { @class = "nav-link" })
-                </li>
-
-                <li>
-                    <a href="#linkDriver" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Driver </a>
-                    <ul class="collapse list-unstyled" id="linkDriver">
+                    <a href="#Master" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Business</a>
+                    <ul class="collapse list-unstyled" id="Master">
                         <li>
-                            @Html.ActionLink("Driver Entry", "Index", new { Controller = "DriverEntry" }, new { @class = "nav-link" })
+                            <a class="collapse-item" asp-area="Master" asp-controller="Catagory" asp-action="Index">Catagory</a>
                         </li>
                         <li>
-                            @Html.ActionLink("Driver List", "List", new { Controller = "DriverEntry" }, new { @class = "nav-link" })
+                            <a class="collapse-item" asp-area="Master" asp-controller="Supplier" asp-action="Index">Supplier</a>
                         </li>
 
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#linkVehicle" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Vehicle </a>
-                    <ul class="collapse list-unstyled" id="linkVehicle">
                         <li>
-                            @Html.ActionLink("Vehicle Entry", "Index", new { Controller = "Vehicle" }, new { @class = "nav-link" })
+                            <a class="collapse-item" asp-area="Master" asp-controller="Product" asp-action="Index">Product</a>
                         </li>
+
                         <li>
-                            @Html.ActionLink("Vehicle List", "List", new { Controller = "Vehicle" }, new { @class = "nav-link" })
+                            <a class="collapse-item" asp-area="Master" asp-controller="ProductStockDetails" asp-action="Index">Product Stock Details</a>
                         </li>
-
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#linkSettings" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Settings</a>
-                    <ul class="collapse list-unstyled" id="linkSettings">
-                        <li>
-                            @Html.ActionLink("New User", "Register", new { Controller = "Account" }, new { @class = "nav-link" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("Change Password", "ChangePassword", new { Controller = "Manage" }, new { @class = "nav-link" })
-                        </li>
-
-
                     </ul>
                 </li>
             </ul>
+
+
         </nav>
 
         <!-- Page Content -->
@@ -277,6 +256,8 @@
         <script src="~/jquery.unobtrusive-ajax.js"></script>
 
         <script src="~/js/common.js"></script>
+        <script src="~/themes/jquery-ui-1.12.1.js"></script>
+
     </environment>
     <environment exclude="Development">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"

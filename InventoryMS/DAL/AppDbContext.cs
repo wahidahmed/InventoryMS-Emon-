@@ -13,14 +13,17 @@ namespace InventoryMS.DAL
         {
 
         }
-        public DbSet<Brand> Brands { get; set; }
+     
         public DbSet<Catagory> Catagories { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
-        public DbSet<Product> Products { get; set; }
+      
 
         public DbSet<Country> Countries { get; set; }
         public DbSet<Division> Divisions { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<Thana> Thanas { get; set; }
+
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductStockDetails> ProductStockDetails { get; set; }
     }
 }

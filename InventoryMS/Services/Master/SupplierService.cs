@@ -25,7 +25,7 @@ namespace InventoryMS.Services.Master
 
         public async Task<IEnumerable<Supplier>> GetAll()
         {
-            return await _context.Suppliers.AsNoTracking().ToListAsync();
+            return await _context.Suppliers.Include(x=>x.Countries).Include(x => x.Divisions).Include(x => x.Districts).Include(x => x.Thanas).AsNoTracking().ToListAsync();
         }
 
         public async Task<Supplier> GetById(int id)

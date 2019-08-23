@@ -1,7 +1,224 @@
 ﻿@model SupplierViewModel
+
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Suppliers";
 }
 
-<h2>Index</h2>
+<div class="card" style="width: 100%;">
+    <div class="card-body">
+        <h4 class="card-title" style="color: black">Supplier Entry</h4>
+        <hr>
 
+        <form asp-area="Master" asp-controller="Supplier" asp-action="Index">
+            <input type="hidden" name="ID" id="ID" value="0">
+            <div class="row">
+                <div asp-validation-summary="All" class="text-danger">
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label asp-for="Name" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="Name" id="Name" />
+                            <span asp-validation-for="Name"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label asp-for="CountriesID" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <select class="form-control" name="CountriesID" id="CountriesID">
+                                @{
+                                    foreach (var data in Model.GetCountries)
+                                    {
+                                        <option value="@data.ID">@data.Name</option>
+                                    }
+
+                                }
+                            </select>
+
+                            <span asp-validation-for="CountriesID"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="DivisionsID" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <select class="form-control" name="DivisionsID" id="DivisionsID"></select>
+                            <span asp-validation-for="DivisionsID"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label asp-for="DistrictsID" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <select class="form-control" name="DistrictsID" id="DistrictsID"></select>
+
+                            <span asp-validation-for="DistrictsID"></span>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label asp-for="ThanasID" class="col-md-3"></label>
+                        <div class="col-md-7">
+
+                            <select class="form-control" name="ThanasID" id="ThanasID"></select>
+
+                            <span asp-validation-for="ThanasID"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Street" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="Street" id="Street" />
+                            <span asp-validation-for="Street"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label asp-for="State" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="State" id="State" />
+                            <span asp-validation-for="State"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label asp-for="Remarks" class="col-md-3"></label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" name="Remarks" id="Remarks" />
+                            <span asp-validation-for="Remarks"></span>
+
+                            <button type="submit" value="Submit" class="btn btn-success btn-lg" style="float:right; margin-top:5px;"><i class="fas fa-save"></i></button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+
+    <div class="card-body">
+        <h4 class="card-title" style="color: black">Supplier List</h4>
+        <hr>
+        <table class="table table-striped table-bordered"id="tblList" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Supplier Name</th>
+                    <th>Country</th>
+                    <th>Division</th>
+                    <th>District</th>
+                    <th>thana</th>
+                    <th>Street</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var data in Model.GetSuppliers)
+                    {
+                        <tr>
+
+                            <td> @data.Name</td>
+                            <td>@data.Countries.Name</td>
+                            <td>@data.Divisions.Name</td>
+                            <td>@data.Districts.Name</td>
+                            <td>@data.Thanas.Name</td>
+                            <td> @data.Street</td>
+                            <td>
+                                <a class="btn btn-success" onclick="Edit(@data.ID, '@data.Name', '@data.CountriesID', '@data.DivisionsID')" href="#"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-danger" href="#"><i class="fa fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            $("#tblList").DataTable();
+           GetDivision();
+           $("#DivisionsID").change(function () {
+               GetDistrict($(this).val() != '' ? $(this).val() : 0);
+               GetThana(0)
+           })
+
+           $("#DistrictsID").change(function () {
+               GetThana($(this).val() != '' ? $(this).val() : 0);
+           })
+
+       })
+
+       function GetDivision() {
+           $("#DivisionsID").empty();
+
+           $.ajax({
+               Method: "GET",
+               url: "@Url.Action("GetDivision")",
+               data: { countriesId: $("#CountriesID").val() },
+               success: (function (data) {
+                   console.log(data);
+                   $("#DivisionsID").append("<option value=''>Select</option>")
+                   $.each(data, function (index, value) {
+                       $("#DivisionsID").append('<option value="' + value.id + '">' + value.name+'</option>')
+                   })
+               })
+           })
+       }
+
+       function GetDistrict(divisionId) {
+           $("#DistrictsID").empty();
+           $.ajax({
+               Method: "GET",
+               url: "@Url.Action("GetDistrict")",
+               data: { divisionId: divisionId },
+               success: (function (data) {
+                   console.log(data);
+                   $("#DistrictsID").append("<option value=''>Select</option>")
+                   $.each(data, function (index, value) {
+                       $("#DistrictsID").append('<option value="' + value.id + '">' + value.name+'</option>')
+                   })
+               })
+           })
+       }
+
+
+
+
+       function GetThana(districtId) {
+           $("#ThanasID").empty();
+           $.ajax({
+               Method: "GET",
+               url: "@Url.Action("GetThana")",
+               data: { districtId: districtId },
+               success: (function (data) {
+                   console.log(data);
+                   $("#ThanasID").append("<option value=''>Select</option>")
+                   $.each(data, function (index, value) {
+                       $("#ThanasID").append('<option value="' + value.id + '">' + value.name+'</option>')
+                   })
+               })
+           })
+       }
+
+    </script>
+}
