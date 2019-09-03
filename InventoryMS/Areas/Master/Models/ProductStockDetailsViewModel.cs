@@ -11,6 +11,8 @@ namespace InventoryMS.Areas.Master.Models
     public class ProductStockDetailsViewModel
     {
         public int ID { get; set; }
+
+        [Required(ErrorMessage = "This is not a valid Product!!!,Please entry this product in product entry page first")]
         public int? ProductID { get; set; }
         [Required(ErrorMessage = "Product Name is required")]
         [Display(Name = "Product Name")]

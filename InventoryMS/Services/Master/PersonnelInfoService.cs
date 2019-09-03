@@ -9,43 +9,38 @@ using System.Threading.Tasks;
 
 namespace InventoryMS.Services.Master
 {
-    public class ProductService: IProductService
+    public class PersonnelInfoService: IPersonnelInfoService
     {
         private readonly AppDbContext _context;
 
-        public ProductService(AppDbContext context)
+        public PersonnelInfoService(AppDbContext context)
         {
             _context = context;
         }
         public async Task<bool> DeleteById(int id)
         {
-            _context.Products.Remove(_context.Products.Find(id));
+            _context.PersonnelInfo.Remove(_context.PersonnelInfo.Find(id));
             return 1 == await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Product>> GetAll()
+        public async Task<IEnumerable<PersonnelInfo>> GetAll()
         {
-            return await _context.Products.AsNoTracking().ToListAsync();
+            return await _context.PersonnelInfo.AsNoTracking().ToListAsync();
         }
 
-        public async Task<Product> GetById(int id)
+        public async Task<PersonnelInfo> GetById(int id)
         {
-            return await _context.Products.Where(x => x.ID == id).FirstOrDefaultAsync();
+            return await _context.PersonnelInfo.Where(x => x.ID == id).FirstOrDefaultAsync();
         }
 
-        public async Task<int> Save(Product entity)
+        public async Task<int> Save(PersonnelInfo entity)
         {
             if (entity.ID != 0)
-                _context.Products.Update(entity);
+                _context.PersonnelInfo.Update(entity);
             else
-                _context.Products.Add(entity);
+                _context.PersonnelInfo.Add(entity);
             await _context.SaveChangesAsync();
             return entity.ID;
         }
-
-        
-
-
-       
     }
 }

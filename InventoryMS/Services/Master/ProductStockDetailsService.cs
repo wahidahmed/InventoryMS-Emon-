@@ -1,5 +1,6 @@
 ﻿using InventoryMS.DAL;
 using InventoryMS.DAL.Entity;
+using InventoryMS.DAL.SqlModel;
 using InventoryMS.Services.Master.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -25,7 +26,7 @@ namespace InventoryMS.Services.Master
 
         public async Task<IEnumerable<ProductStockDetails>> GetAll()
         {
-            return await _context.ProductStockDetails.AsNoTracking().ToListAsync();
+            return await _context.ProductStockDetails.Include(x=>x.Products).AsNoTracking().ToListAsync();
         }
 
         public async Task<ProductStockDetails> GetById(int id)
@@ -43,6 +44,14 @@ namespace InventoryMS.Services.Master
             return entity.ID;
         }
 
-       
+        public async Task<IEnumerable<ProductStockDetails>> GetByProduct(int ?productId)
+        {
+            return await _context.ProductStockDetails.Where(x=>x.ProductsID== productId).AsNoTracking().ToListAsync();
+        }
+
+        public async Task<IEnumerable<ProductDetailsForStock>> GetProductDetailsForStock(int? id)
+        {
+            return await _context.ProductDetailsForStock.FromSql("Sp_GetProductDetailsForStock @p0",id).ToListAsync();
+        }
     }
 }

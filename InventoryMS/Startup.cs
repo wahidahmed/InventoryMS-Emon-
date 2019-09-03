@@ -40,6 +40,7 @@ namespace InventoryMS
           
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductStockDetailsService, ProductStockDetailsService>();
+            services.AddScoped<IProductStockService,ProductStockService>();
             #endregion
             services.Configure<CookiePolicyOptions>(options =>
             {

@@ -1,4 +1,5 @@
 ﻿using InventoryMS.DAL.Entity;
+using InventoryMS.DAL.SqlModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,5 +26,12 @@ namespace InventoryMS.DAL
 
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductStockDetails> ProductStockDetails { get; set; }
+        public DbSet<PersonnelInfo> PersonnelInfo { get; set; }
+
+        public DbSet<ProductSales> ProductSales { get; set; }
+
+        public DbSet<ProductStock> ProductStock { get; set; }
+
+        public DbQuery<ProductDetailsForStock> ProductDetailsForStock { get; set; }
     }
 }

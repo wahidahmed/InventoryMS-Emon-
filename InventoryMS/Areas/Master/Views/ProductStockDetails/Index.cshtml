@@ -22,7 +22,7 @@
                             <input type="hidden" id="ProductID" name="ProductID" />
                             <input type="text" class="form-control" value="" name="ProductName" id="ProductName" />
 
-                            <span asp-validation-for="ProductID"></span>
+                            <span asp-validation-for="ProductName"></span>
                         </div>
 
                     </div>
@@ -33,14 +33,13 @@
                             <input readonly class="form-control" id="unit" />
                         </div>
                     </div>
-                  
+
                     <div class="form-group row">
                         <label class="col-md-3">Particulars</label>
                         <div class="col-md-7">
                             <input readonly class="form-control" id="Particulars" />
                         </div>
                     </div>
-
 
 
                     <div class="form-group row">
@@ -100,12 +99,56 @@
             </div>
         </form>
     </div>
+
+    <div class="card-body">
+        <h4 class="card-title" style="color: black"> Product Stock Details List</h4>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-bordered" id="tblList">
+                    <thead>
+                        <tr>
+                            <th>Product Code</th>
+                            <th>Product Name</th>
+                            <th>Catagory</th>
+                            <th>Brand</th>
+                            <th>Particulars</th>
+                            <th>Entry Date</th>
+                            <th>Qty</th>
+                            <th>UnitPrice</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ 
+                            foreach(var data in Model.productStockDetails)
+                            {
+                        <tr>
+                            <td>@data.Products.ProductCode</td>
+                            <td>@data.Products.ProductName</td>
+                            <td>@data.Products.Catagory</td>
+                            <td>@data.Products.Brand</td>
+                            <td>@data.Products.Particurals</td>
+                            <td>@data.EntryDate</td>
+                            <td>@data.Qty</td>
+                            <td>@data.UnitPrice</td>
+                            <td><a href="javascript:void(0)" class="btn btn-info btnMrginTbl"><i class="fa fa-edit"></i></a><a href="javascript:void(0)" class="btn btn-danger btnMrginTbl"><i class="fa fa-trash"></i></a></td>
+                        </tr>
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 @section Scripts{ 
     <script>
         $(document).ready(function () {
+            $("#tblList").DataTable();
             $(".datePicker").datepicker({ dateFormat: "dd/mm/yy", showAnim: "scale", changeMonth: true, changeYear: true, yearRange: "1990:2030" }).datepicker("setDate", new Date()); 
 
             GetProducts();
