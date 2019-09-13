@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InventoryMS.DAL;
+using InventoryMS.Helper;
 using InventoryMS.Services.Master;
 using InventoryMS.Services.Master.Interface;
 using Microsoft.AspNetCore.Builder;
@@ -41,6 +42,13 @@ namespace InventoryMS
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductStockDetailsService, ProductStockDetailsService>();
             services.AddScoped<IProductStockService,ProductStockService>();
+            services.AddScoped<IPersonnelInfoService, PersonnelInfoService>();
+            services.AddScoped<IProductSalesDetailsService, ProductSalesDetailsService>();
+            services.AddScoped<IProductSaleMasterService, ProductSaleMasterService>();
+            #endregion
+
+            #region helper
+            services.AddScoped<IHelperService, HelperService>();
             #endregion
             services.Configure<CookiePolicyOptions>(options =>
             {

@@ -28,7 +28,8 @@ namespace InventoryMS.DAL
         public DbSet<ProductStockDetails> ProductStockDetails { get; set; }
         public DbSet<PersonnelInfo> PersonnelInfo { get; set; }
 
-        public DbSet<ProductSales> ProductSales { get; set; }
+        public DbSet<ProductSalesDetails> ProductSalesDetails { get; set; }
+        public DbSet<ProductSaleMaster> ProductSaleMaster { get; set; }
 
         public DbSet<ProductStock> ProductStock { get; set; }
 

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace InventoryMS.DAL.Entity
 {
+
     public class PersonnelInfo:Base
     {
         public string Name { get; set; }

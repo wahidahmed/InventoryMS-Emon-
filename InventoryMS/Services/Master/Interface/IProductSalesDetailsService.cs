@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace InventoryMS.Services.Master.Interface
 {
-    public interface IPersonnelInfoService
+    public  interface IProductSalesDetailsService
     {
-        Task<int> Save(PersonnelInfo entity);
-        Task<IEnumerable<PersonnelInfo>> GetAll();
-        Task<PersonnelInfo> GetById(int id);
+        Task<int> Save(ProductSalesDetails entity);
+        Task<IEnumerable<ProductSalesDetails>> GetAll();
+        Task<ProductSalesDetails> GetById(int id);
         Task<bool> DeleteById(int id);
-
-        Task<int?> MaxId();
     }
 }

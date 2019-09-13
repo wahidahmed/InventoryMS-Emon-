@@ -6,33 +6,30 @@
 }
 
 <style>
-    .detailsMarg{margin:5px 0}
+    .detailsMarg {
+        margin: 5px 0
+    }
 </style>
 
 <div class="card" style="width: 100%;">
     <div class="card-body">
-        <h4 class="card-title" style="color: black">Customer Entry</h4>
+        <h4 class="card-title" style="color: black">Customer Details</h4>
         <hr>
 
-        <form asp-area="Master" asp-controller="ProductSales" asp-action="SaveCustomer">
             <input type="hidden" name="ID" id="ID" value="0">
             <div class="row">
-                <div asp-validation-summary="All" class="text-danger">
 
-                </div>
                 <div class="col-md-6">
                     <div class="form-group row">
-                        <label asp-for="PersonnelInfoVM.Name" class="col-md-3"></label>
+                        <label for="Name" class="col-md-3">Customer Name</label>
                         <div class="col-md-7">
                             <input type="text" class="form-control" name="Name" id="Name" />
-                            <span asp-validation-for="PersonnelInfoVM.Name"></span>
                         </div>
-
                     </div>
 
 
                     <div class="form-group row">
-                        <label asp-for="PersonnelInfoVM.CountriesID" class="col-md-3"></label>
+                        <label for="CountriesID" class="col-md-3">Country Name</label>
                         <div class="col-md-7">
                             <select class="form-control" name="CountriesID" id="CountriesID">
                                 @{
@@ -43,26 +40,23 @@
 
                                 }
                             </select>
-
-                            <span asp-validation-for="PersonnelInfoVM.CountriesID"></span>
                         </div>
 
                     </div>
                     <div class="form-group row">
-                        <label asp-for="PersonnelInfoVM.DivisionsID" class="col-md-3"></label>
+                        <label for="DivisionsID" class="col-md-3">Division Name</label>
                         <div class="col-md-7">
                             <select class="form-control" name="DivisionsID" id="DivisionsID"></select>
-                            <span asp-validation-for="PersonnelInfoVM.DivisionsID"></span>
+
                         </div>
 
                     </div>
 
                     <div class="form-group row">
-                        <label asp-for="PersonnelInfoVM.DistrictsID" class="col-md-3"></label>
+                        <label for="DistrictsID" class="col-md-3">District Name</label>
                         <div class="col-md-7">
                             <select class="form-control" name="DistrictsID" id="DistrictsID"></select>
 
-                            <span asp-validation-for="PersonnelInfoVM.DistrictsID"></span>
                         </div>
 
                     </div>
@@ -70,32 +64,37 @@
 
                 </div>
                 <div class="col-md-6">
+
                     <div class="form-group row">
-                        <label asp-for="PersonnelInfoVM.ThanasID" class="col-md-3"></label>
+                        <label for="PersonnelCode" class="col-md-3">Customer Code</label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" readonly name="PersonnelCode" id="PersonnelCode" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ThanasID" class="col-md-3">Thana Name</label>
                         <div class="col-md-7">
 
                             <select class="form-control" name="ThanasID" id="ThanasID"></select>
 
-                            <span asp-validation-for="PersonnelInfoVM.ThanasID"></span>
                         </div>
 
                     </div>
                     <div class="form-group row">
-                        <label asp-for="PersonnelInfoVM.Street" class="col-md-3"></label>
+                        <label for="Street" class="col-md-3">Street</label>
                         <div class="col-md-7">
                             <input type="text" class="form-control" name="Street" id="Street" />
-                            <span asp-validation-for="PersonnelInfoVM.Street"></span>
+
                         </div>
 
                     </div>
 
                     <div class="form-group row">
-                        <label asp-for="PersonnelInfoVM.State" class="col-md-3"></label>
+                        <label for="State" class="col-md-3">State</label>
                         <div class="col-md-7">
                             <input type="text" class="form-control" name="State" id="State" />
-                            <span asp-validation-for="PersonnelInfoVM.State"></span>
 
-                            <button type="submit" value="Submit" class="btn btn-success btn-lg" style="float:right; margin-top:5px;"><i class="fas fa-save"></i></button>
+                           
                         </div>
 
                     </div>
@@ -103,102 +102,34 @@
             </div>
 
 
-        </form>
     </div>
 
-        
     <div class="card-body">
-        <h4 class="card-title" style="color: black">Product Add</h4>
+
+        <h4 class="card-title" style="color: black">Product Details </h4>
         <hr>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group row">
-                    <label asp-for="ProductsID" class="col-md-3"></label>
-                    <div class="col-md-7">
-                        <input type="hidden" id="ProductsID" name="ProductsID" />
-                        <input type="text" class="form-control" value="" name="ProductName" id="ProductName" />
-                    </div>
-
-                </div>
-
-
-                <div class="form-group row">
-                    <label class="col-md-3">Unit</label>
-                    <div class="col-md-7">
-                        <input readonly class="form-control" id="unit" />
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-md-3">Particulars</label>
-
-                    <div class="col-md-7">
-                        <input readonly class="form-control" id="Particulars" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-3">Catagory</label>
-                    <div class="col-md-7">
-                        <input readonly class="form-control" id="Catagory" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-3">Brand</label>
-                    <div class="col-md-7">
-                        <input readonly class="form-control" id="Brand" />
-                    </div>
-                </div>
-
-               
-
-            </div>
-            <div class="col-md-6">
-                <div class="form-group row">
-                    <label class="col-md-3">Stock Qty</label>
-                    <div class="col-md-7">
-                        <input readonly class="form-control" id="stockQty" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label asp-for="SalesDate" class="col-md-3"></label>
+                    <label for="SalesDate" class="col-md-3">Sales Date</label>
                     <div class="col-md-7">
                         <input type="text" class="form-control datePicker" name="SalesDate" id="SalesDate" />
 
                     </div>
 
                 </div>
-
+            </div>
+            <div class="col-md-6">
                 <div class="form-group row">
-                    <label asp-for="Qty" class="col-md-3"></label>
+                    <label for="Remarks" class="col-md-3">Remarks</label>
                     <div class="col-md-7">
-                        <input type="number" class="form-control" name="Qty" id="Qty" />
 
-                    </div>
-
-                </div>
-                <div class="form-group row">
-                    <label asp-for="UnitSalesPrice" class="col-md-3"></label>
-                    <div class="col-md-7">
-                        <input type="number" class="form-control" name="UnitSalesPrice" id="UnitSalesPrice" />
-                    </div>
-
-                </div>
-                <div class="form-group row">
-                    <label asp-for="Discount" class="col-md-3"></label>
-                    <div class="col-md-7">
-                        <input type="number" class="form-control" name="Discount" id="Discount" />
-                        <span asp-validation-for="Discount"></span>
-                       
-
+                        <textarea class="form-control" name="Remarks" id="Remarks"></textarea>
                     </div>
 
                 </div>
             </div>
         </div>
-    </div>
-
-
-    <div class="card-body">
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-striped table-bordered" id="tblList">
@@ -217,34 +148,44 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="text" class="form-control productName" id="productName_1" onclick="AutoComplete(1)"/></td>
+                            <td><input type="text" class="form-control productName" id="productName_1" onclick="AutoComplete(1)" /></td>
                             <td>
                                 <input type="hidden" class="clsProductID" id="ProductID_1" readonly /><input type="text" class="form-control unit" id="unit_1" readonly /><input type="text" class="form-control Brand detailsMarg" id="Brand_1" readonly />
-                               
+
                             </td>
                             <td>
                                 <input type="text" class="form-control Particulars" id="Particulars_1" readonly /><input type="text" class="form-control Catagory detailsMarg" id="Catagory_1" readonly />
                             </td>
-                            <td><input type="number" class="form-control stock" id="stock_1" readonly /><input type="hidden"id="hdnStock_1" /></td>
+                            <td><input type="number" class="form-control stock" id="stock_1" readonly /><input type="hidden" id="hdnStock_1" /></td>
                             <td><input type="number" class="form-control qty" id="qty_1" onkeyup="SalesQty(1)" /></td>
-                            <td><input type="number" class="form-control price" id="price_1" /></td>
-                            <td><input type="number" class="form-control discount" id="discount_1" /></td>
-                            <td><input type="number" class="form-control total" id="total_1" /></td>
-                            <td>
-                               
-                            </td>
+                            <td><input type="number" class="form-control price" id="price_1" onkeyup="TotalPrice(1)" /></td>
+                            <td><input type="number" class="form-control discount" id="discount_1" onkeyup="Discount(1)" /></td>
+                            <td><input type="number" class="form-control total" id="total_1" readonly /></td>
+                            <td></td>
                         </tr>
                     </tbody>
-
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <button type="button" class="btn btn-info btn-sm" id="btnProductAdd" style="float:left; margin-top:5px;"><i class="fas fa-plus-square"></i></button>
+                            </td>
+                            <td style="text-align:right">Total=</td>
+                            <td>
+                                <input type="number" class="form-control " id="allDiscount" onkeyup="NetDiscount(this.value)" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control " id="allTotal" readonly />
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
                 </table>
-            </div>
-            <div class="col-md-12">
-                <button type="button" class="btn btn-info btn-sm" id="btnProductAdd" style="float:left; margin-top:5px;"><i class="fas fa-plus-square"></i></button>
-             
+
+                <button type="submit" value="Submit" class="btn btn-success btn-lg pull-right" style="float:right; margin-top:5px;" onclick="Save()"><i class="fas fa-save"></i></button>
             </div>
         </div>
     </div>
-</div>             
+</div>
 
 @section Scripts{
     <script>
@@ -267,7 +208,7 @@
             $("#btnProductAdd").click(function () {
                 SalesTableAddRow();
             })
-
+            GetPersonalsCode();
         })
 
         function GetDivision() {
@@ -327,11 +268,11 @@
         function SalesTableAddRow() {
             var table = $("#tblList tbody");
 
-            table.append('<tr id="trId_' + index + '"><td><input type="text" class="form-control productName" id="productName_' + index + '" onclick="AutoComplete(' + index + ')"/></td><td><input type="hidden" class="clsProductID" id="ProductID_' + index + '" readonly /><input type="text" class="form-control unit" id="unit_' + index + '" readonly /><input type="text" class="form-control Brand detailsMarg" id="Brand_' + index + '" readonly /></td><td><input type="text" class="form-control Particulars" id="Particulars_' + index + '" readonly /><input type="text" class="form-control Catagory detailsMarg" id="Catagory_' + index + '" readonly /></td><td><input type="number" class="form-control stock" id="stock_' + index + '" readonly /><input type="hidden"id="hdnStock_' + index + '" /></td><td><input type="number" class="form-control qty" id="qty_' + index + '" onkeyup="SalesQty(' + index + ')"/></td><td><input type="number" class="form-control price" id="price_' + index + '" /></td><td><input type="number" class="form-control discount" id="discount_' + index + '" /></td><td><input type="number" class="form-control total" id="total_' + index + '" /></td><td> <a class="btn btn-danger btn-sm" id="btnProductdeduct" onclick="Delete(' + index + ')"><i class="fas fa-minus-square"></i></a></td></tr>')
+            table.append('<tr id="trId_' + index + '"><td><input type="text" class="form-control productName" id="productName_' + index + '" onclick="AutoComplete(' + index + ')"/></td><td><input type="hidden" class="clsProductID" id="ProductID_' + index + '" readonly /><input type="text" class="form-control unit" id="unit_' + index + '" readonly /><input type="text" class="form-control Brand detailsMarg" id="Brand_' + index + '" readonly /></td><td><input type="text" class="form-control Particulars" id="Particulars_' + index + '" readonly /><input type="text" class="form-control Catagory detailsMarg" id="Catagory_' + index + '" readonly /></td><td><input type="number" class="form-control stock" id="stock_' + index + '" readonly /><input type="hidden"id="hdnStock_' + index + '" /></td><td><input type="number" class="form-control qty" id="qty_' + index + '" onkeyup="SalesQty(' + index + ')"/></td><td><input type="number" class="form-control price" id="price_' + index + '" onkeyup="TotalPrice(' + index + ')" /></td><td><input type="number" class="form-control discount" id="discount_' + index + '" onkeyup="Discount(' + index + ')" /></td><td><input type="number" class="form-control total" id="total_' + index + '" readonly /></td><td> <a class="btn btn-danger btn-sm" id="btnProductdeduct" onclick="Delete(' + index + ')"><i class="fas fa-trash"></i></a></td></tr>')
             index = index + 1;
         }
         function AutoComplete(index) {
-            
+
             var allProduct = [];
             $("#productName_" + index).attr("placeholder", "Loading .....");
         $.ajax({
@@ -342,7 +283,7 @@
             async: true,
             data: {},
             success: function (List_ItemViewModel) {
-         
+
                 $.each(List_ItemViewModel, function (id, option) {
                     var obj2 = new Object();
                     obj2.key = option.id;
@@ -367,6 +308,7 @@
                         var proId = $("#ProductID_" + i).val();
                         if (proId == ui.item.key) {
                             alert("This Product is already listed");
+                            $("#productName_" + index).val('');
                             return false;
                         }
                     }
@@ -379,9 +321,9 @@
 
                     stock(ui.item.key, index)
             }
-      
+
             });
-           
+
         }
 
         function stock(id,index) {
@@ -397,7 +339,7 @@
                         $("#stock_" + index).val(parseFloat(value.totalQty));
                         $("#hdnStock_" + index).val(parseFloat(value.totalQty));
                     })
-                    
+
                 })
 
             })
@@ -407,27 +349,200 @@
             var leftStock = 0;
             var stockQty = parseFloat($("#hdnStock_" + index).val());
             var saleQty = parseFloat($("#qty_" + index).val());
-            
+
             if (isNaN(saleQty)) {
-                saleQty=0;
+                saleQty = 0;
+            }
+
+            if (isNaN(stockQty)) {
+
+                alert("Please select any product first!!!");
+                parseFloat($("#qty_" + index).val(''));
+                $("#productName_" + index).focus();
+                return false;
             }
             if (stockQty > 0) {
                 if (stockQty >= saleQty) {
                     leftStock = stockQty - saleQty;
                     console.log(leftStock);
-                    $("#stock_" + index).val(leftStock)
-                } else {
+                    $("#stock_" + index).val(leftStock);
+
+                    TotalPrice(index);
+                }
+                else {
                     alert("Sale Quantity Cant be greater than Stock Quantity!!!");
                     parseFloat($("#qty_" + index).val(''))
+
                     $("#stock_" + index).val(stockQty)
-                } 
+                }
             }
-            
+
         }
 
+        function TotalPrice(index) {
+            var returnTotal = 0;
+            var sPrice = parseFloat($("#price_" + index).val());
+            if (isNaN(sPrice)) {
+                sPrice = 0;
+            }
+            var sQty = parseFloat($("#qty_" + index).val());
+            if (isNaN(sQty)) {
+                sQty = 0;
+
+            }
+            var total = sPrice * sQty;
+            
+            $("#total_" + index).val(parseFloat(total).toFixed(2));
+            AllTotal();
+            returnTotal = total;
+            if (total > 0) {
+                Discount(index);
+            }
+            else {
+                $("#discount_" + index).val('');
+            }
+            return returnTotal;
+        }
+
+        
+
+
+        function Discount(index) {
+            var discount = parseFloat($("#discount_" + index).val());
+            var total = parseFloat($("#price_" + index).val()) * parseFloat($("#qty_" + index).val());
+            netTotal = 0;
+            if (isNaN(total)) {
+                alert("There is no enough total amount to discount!!");
+                $("#discount_" + index).val('');
+                return false;
+            }
+            if (isNaN(discount)) {
+                discount = 0;
+            }
+            if (total > 0) {
+                netTotal = total - discount;
+                $("#total_" + index).val(parseFloat(netTotal).toFixed(2));
+                AllTotal();
+                AllDiscount();
+            }
+            else {
+                alert("There is no enough total amount to discount!!");
+                $("#discount_" + index).val('');
+                return false;
+            }
+        }
+        function AllTotal() {
+            var tableLnt = $("#tblList tbody tr").length;
+            var total = 0;
+            for (var i = 1; i <= tableLnt; i++) {
+                total = total + parseFloat($("#total_" + i).val());
+            }
+            $("#allTotal").val(parseFloat(total).toFixed(2));
+        }
+
+        function AllDiscount() {
+            var tableLnt = $("#tblList tbody tr").length;
+            var discount = 0;
+            for (var i = 1; i <= tableLnt; i++) {
+                var dis = parseFloat($("#discount_" + i).val());
+               
+                if (isNaN(dis)) {
+                    dis = 0;
+                }
+                discount = discount + dis;
+            }
+            $("#allDiscount").val(parseFloat(discount).toFixed(2));
+        }
+        function NetDiscount(value) {
+            var tableLnt = $("#tblList tbody tr").length;
+            var total = 0;
+            for (var i = 1; i <= tableLnt; i++) {
+                var sPrice = parseFloat($("#price_" + i).val());
+                if (isNaN(sPrice)) {
+                    sPrice = 0;
+                }
+                var sQty = parseFloat($("#qty_" + i).val());
+                if (isNaN(sQty)) {
+                    sQty = 0;
+
+                }
+                var total = total+(sPrice * sQty);
+                //total = total + parseFloat($("#total_" + i).val());
+            }
+            var netTotal = total - parseFloat(value);
+            $("#allTotal").val(parseFloat(netTotal).toFixed(2));
+        }
         function Delete(index) {
             var table = $("#tblList tbody tr").length;
             $("#trId_" + index).remove()
         }
+
+
+        function Save() {
+            var tablelength = $("#tblList tbody>tr").length
+            var Name = $("#Name").val();
+            var PersonnelCode = $("#PersonnelCode").val();
+            var CountriesID = $("#CountriesID").val();
+            var ThanasID = $("#ThanasID").val();
+            var DivisionsID = $("#DivisionsID").val();
+            var Street = $("#Street").val();
+            var DistrictsID = $("#DistrictsID").val();
+            var State = $("#State").val();
+            var SalesDate = $("#SalesDate").val();
+            var id = parseInt($("#ID").val());
+
+            var details = [];
+            $("#tblList tbody>tr").each(function () {
+                details.push({
+                    ProductsID: $(this).find(".clsProductID").val(),
+                    Qty: $(this).find(".qty").val(),
+                    UnitSalesPrice: $(this).find(".price").val(),
+                    Discount: $(this).find(".discount").val()
+                })
+
+            })
+
+            var allTrx = new Object();
+            allTrx.ProductDetails = details;
+            allTrx.Name = Name;
+            allTrx.PersonnelCode = PersonnelCode;
+            allTrx.CountriesID = CountriesID;
+            allTrx.ThanasID = ThanasID;
+            allTrx.DivisionsID = DivisionsID;
+            allTrx.Street = Street;
+            allTrx.DistrictsID = DistrictsID;
+            allTrx.State = State;
+            allTrx.SalesDate = SalesDate;
+            allTrx.ID = id;
+             $.ajax({
+                url: '@Url.Action("Save", "ProductSales")',
+                type: 'Post',
+                //async: false,
+                data: allTrx
+             })
+                 .done(function (response) {
+                    alert("Successfull");
+                     var link = '@Url.Action("Index", "ProductSales", "http")'
+                  
+                     window.location.href = link;
+                })
+                .fail(function () {
+                    alert("Unable to Save. Please Try Again");
+                });
+        }
+
+
+        function GetPersonalsCode() {
+
+           $.ajax({
+               Method: "GET",
+               url: "@Url.Action("GetPersonalsCode")",
+               data: { },
+               success: (function (data) {
+                   $("#PersonnelCode").val(data);
+
+               })
+           })
+       }
     </script>
 }

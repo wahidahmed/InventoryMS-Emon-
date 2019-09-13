@@ -42,5 +42,18 @@ namespace InventoryMS.Services.Master
             await _context.SaveChangesAsync();
             return entity.ID;
         }
+
+
+        public async Task<int?> MaxId()
+        {
+            int id = 1;
+            int? count = await  _context.PersonnelInfo.CountAsync();
+            if(count > 0)
+            {
+                int maxid = await _context.PersonnelInfo.MaxAsync(x => x.ID);
+                id =Convert.ToInt32(maxid);
+            }
+            return id;
+        }
     }
 }

@@ -5,22 +5,12 @@ using System.Threading.Tasks;
 
 namespace InventoryMS.DAL.Entity
 {
-    public class ProductSales:Base
+    public class ProductSaleMaster:Base
     {
         public int? PersonnelInfoID { get; set; }
-
         public string SalesDate { get; set; }
-
-        public int? ProductsID { get; set; }
-
-        public decimal? Qty { get; set; }
-
-        public decimal? UnitSalesPrice { get; set; }
-
-        public string Remarks { get; set; }
-
-        public Product Products { get; set; }
-       
+        public decimal? TotalDiscount { get; set; }
+        public decimal? Total { get; set; }
         public PersonnelInfo PersonnelInfo { get; set; }
     }
 }
